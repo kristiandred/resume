@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кристина Боровик | Веб-разработчик</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Ваш CSS -->
+    <style>
+        :root {
+            --dark-green: #0a2e1a;
+            --medium-green: #1a4d2e;
+            --light-green: #2d7d46;
+            --accent-green: #3aab58;
+            --black: #121212;
+            --dark-gray: #1e1e1e;
+            --light-gray: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--black);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        /* Навигация */
+        .navbar {
+            background-color: rgba(10, 46, 26, 0.9) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Герой секция */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-green), var(--black));
+            padding: 150px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(58, 171, 88, 0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+            z-index: 0;
+        }
+        
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border: 5px solid var(--accent-green);
+            box-shadow: 0 10px 30px rgba(58, 171, 88, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(58, 171, 88, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-3px);
+        }
+        
+        /* Секции */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -10px;
+            left: 0;
+            background-color: var(--accent-green);
+        }
+        
+        /* Обо мне */
+        #about {
+            background-color: var(--dark-gray);
+            color: #ffffff;
+        }
+         #about h2,
+    #about h3,
+    #about h4,
+    #about h5 {
+        color: #ffffff; /* Белый цвет заголовков */
+    }
+    
+    #about p {
+        color: #ffffff; /* Белый цвет основного текста */
+        opacity: 0.9; /* Легкая прозрачность для лучшей читаемости */
+    }
+        
+        .skill-item {
+            margin-bottom: 25px;
+        }
+        
+        .progress {
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background-color: var(--accent-green);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: var(--accent-green);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            left: -5px;
+            top: 5px;
+            background-color: var(--accent-green);
+        }
+        
+        /* Портфолио */
+        #portfolio {
+            background-color: var(--black);
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(58, 171, 88, 0.3);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(10, 46, 26, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: #eeff00;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        /* Контакты */
+        #contact {
+            background-color: var(--dark-gray);
+        }
+        
+        .contact-card {
+            background-color: var(--black);
+            border-radius: 10px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(58, 171, 88, 0.1);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(58, 171, 88, 0.1);
+            border-color: var(--accent-green);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 0 0 0.25rem rgba(58, 171, 88, 0.25);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-green);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2d7d46;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(58, 171, 88, 0.3);
+        }
+        
+        /* Футер */
+        footer {
+            background-color: var(--dark-green);
+            padding: 30px 0;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-green);
+            text-decoration: none;
+        }
+        
+        /* Анимации */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title::after {
+                width: 30%;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-code me-2"></i>Кристина Боровик</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about"><i class="fas fa-user me-1"></i> Обо мне</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills"><i class="fas fa-laptop-code me-1"></i> Навыки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio"><i class="fas fa-briefcase me-1"></i> Портфолио</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i> Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <header class="hero section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-1 order-2 hero-content animate__animated animate__fadeInLeft">
+                    <h1 class="display-4 fw-bold mb-3">Кристина Боровик</h1>
+                    <h2 class="mb-4">Веб-разработчик и дизайнер</h2>
+                    <p class="lead mb-4">Создаю современные, адаптивные и интерактивные веб-приложения с уникальным дизайном.</p>
+                    <div class="d-flex">
+                        <a href="#contact" class="btn btn-primary btn-lg me-3 pulse"><i class="fas fa-paper-plane me-2"></i>Связаться</a>
+                        <a href="#portfolio" class="btn btn-outline-light btn-lg"><i class="fas fa-eye me-2"></i>Мои работы</a>
+                    </div>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="animate__animated animate__fadeIn animate__delay-1s"><i class="fab fa-github"></i></a>
+                        <a href="#" class="animate__animated animate__fadeIn animate__delay-1-2s"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="animate__animated animate__fadeIn animate__delay-1-4s"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="animate__animated animate__fadeIn animate__delay-1-6s"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-2 order-1 text-center mb-5 mb-lg-0 animate__animated animate__fadeInRight">
+                    <img src="D:\Мои документы\Рабочий стол\my-portfolio\image\Instagram_files\340847967_801151671348051_3586956109951073369_n.webp" 
+                         class="profile-img rounded-circle pulse" 
+                         alt="Кристина Боровик">
+                    <div class="mt-3">
+                        <span class="badge bg-success me-2">Frontend</span>
+                        <span class="badge bg-success me-2">UI/UX</span>
+                        <span class="badge bg-success">React</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Обо мне -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title text-center slide-up"><i class="fas fa-user me-2"></i>Обо мне</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card bg-dark border-success border-2 slide-up">
+                        <div class="card-body p-5">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h3 class="mb-4">Кто я</h3>
+                                    <p>Привет! Я Кристина, профессиональный веб-разработчик с более чем 3-летним опытом создания современных веб-приложений.</p>
+                                    <p>Моя страсть - превращать идеи в цифровую реальность с помощью чистого кода и интуитивного дизайна.</p>
+                                    <p>Я постоянно изучаю новые технологии и совершенствую свои навыки, чтобы создавать продукты, которые не только красивы, но и функциональны.</p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h3 class="mb-4">Мой подход</h3>
+                                    <div class="d-flex mb-3">
+                                        <div class="me-3 text-success">
+                                            <i class="fas fa-lightbulb fa-2x"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Инновации</h5>
+                                            <p class="mb-0">Использую современные технологии и подходы</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="me-3 text-success">
+                                            <i class="fas fa-mobile-alt fa-2x"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Адаптивность</h5>
+                                            <p class="mb-0">Создаю сайты, которые идеально работают на любых устройствах</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="me-3 text-success">
+                                            <i class="fas fa-tachometer-alt fa-2x"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Производительность</h5>
+                                            <p class="mb-0">Оптимизирую код для максимальной скорости загрузки</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Навыки -->
+    <section id="skills" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title text-center slide-up"><i class="fas fa-laptop-code me-2"></i>Мои навыки</h2>
+            <div class="row slide-up">
+                <div class="col-lg-6">
+                    <div class="skill-item">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="mb-0">HTML/CSS</h5>
+                            <span>95%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="mb-0">JavaScript</h5>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="mb-0">React</h5>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="skill-item">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="mb-0">Bootstrap</h5>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="mb-0">Node.js</h5>
+                            <span>70%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="mb-0">UI/UX Design</h5>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 slide-up">
+                <div class="col-12">
+                    <h3 class="text-center mb-4">Технологии, которые я использую</h3>
+                    <div class="d-flex flex-wrap justify-content-center">
+                        <div class="tech-item m-3 text-center">
+                            <i class="fab fa-html5 fa-3x text-danger mb-2"></i>
+                            <p>HTML5</p>
+                        </div>
+                        <div class="tech-item m-3 text-center">
+                            <i class="fab fa-css3-alt fa-3x text-primary mb-2"></i>
+                            <p>CSS3</p>
+                        </div>
+                        <div class="tech-item m-3 text-center">
+                            <i class="fab fa-js-square fa-3x text-warning mb-2"></i>
+                            <p>JavaScript</p>
+                        </div>
+                        <div class="tech-item m-3 text-center">
+                            <i class="fab fa-react fa-3x text-info mb-2"></i>
+                            <p>React</p>
+                        </div>
+                        <div class="tech-item m-3 text-center">
+                            <i class="fab fa-bootstrap fa-3x text-purple mb-2"></i>
+                            <p>Bootstrap</p>
+                        </div>
+                        <div class="tech-item m-3 text-center">
+                            <i class="fab fa-node-js fa-3x text-success mb-2"></i>
+                            <p>Node.js</p>
+                        </div>
+                        <div class="tech-item m-3 text-center">
+                            <i class="fas fa-database fa-3x text-secondary mb-2"></i>
+                            <p>MongoDB</p>
+                        </div>
+                        <div class="tech-item m-3 text-center">
+                            <i class="fab fa-git-alt fa-3x text-orange mb-2"></i>
+                            <p>Git</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Опыт -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title text-center slide-up"><i class="fas fa-briefcase me-2"></i>Опыт работы</h2>
+            <div class="row justify-content-center slide-up">
+                <div class="col-lg-8">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025 - настоящее время</div>
+                            <h4>Веб-разработчик в "ТехноЛаб"</h4>
+                            <p>Разработка и поддержка веб-приложений для крупных клиентов компании. Оптимизация производительности и улучшение пользовательского опыта.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023 - 2025</div>
+                            <h4>Frontend разработчик (фриланс)</h4>
+                            <p>Создание адаптивных веб-сайтов и приложений для клиентов по всему миру. Работа с различными CMS и фреймворками.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022 - 2023</div>
+                            <h4>Стажер в "WebStudio"</h4>
+                            <p>Участие в разработке интерфейсов для корпоративных клиентов. Изучение современных технологий веб-разработки.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Портфолио -->
+<section id="portfolio" class="section bg-dark">
+    <div class="container">
+        <h2 class="section-title text-center slide-up"><i class="fas fa-briefcase me-2"></i>Мои работы</h2>
+        <p class="text-center mb-5 slide-up">Вот несколько моих последних проектов</p>
+        
+        <div class="row" id="main-portfolio">
+            <!-- Проект 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=7ac286535100546565e22539049a00d144a2ed1d-5333398-images-thumbs&n=13" class="portfolio-img" alt="Корпоративный сайт" onerror="this.src='https://via.placeholder.com/600x400/1a4d2e/ffffff?text=Корпоративный+сайт'">
+                    <div class="portfolio-overlay">
+                        <h4>Корпоративный сайт</h4>
+                        <p>Современный сайт для IT-компании с адаптивным дизайном</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">HTML</span>
+                            <span class="badge bg-success me-1">CSS</span>
+                            <span class="badge bg-success">JavaScript</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=32670e0718480d5c50a7e0b9eccede4240f9d5fa-10507661-images-thumbs&n=13" class="portfolio-img" alt="Интернет-магазин" onerror="this.src='https://via.placeholder.com/600x400/2d7d46/ffffff?text=Интернет+магазин'">
+                    <div class="portfolio-overlay">
+                        <h4>Интернет-магазин</h4>
+                        <p>Полнофункциональный магазин с корзиной и платежами</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">React</span>
+                            <span class="badge bg-success me-1">Node.js</span>
+                            <span class="badge bg-success">MongoDB</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=0cbf482ea9189d5c0dd19ae41d0b5211ec31c068-10639597-images-thumbs&n=13" class="portfolio-img" alt="Мобильное приложение" onerror="this.src='https://via.placeholder.com/600x400/3aab58/ffffff?text=Мобильное+приложение'">
+                    <div class="portfolio-overlay">
+                        <h4>Мобильное приложение</h4>
+                        <p>Кроссплатформенное приложение для iOS и Android</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">React Native</span>
+                            <span class="badge bg-success me-1">Firebase</span>
+                            <span class="badge bg-success">Redux</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 4 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=bc2d09ba1c7076d8d1267a62f028029186dab684-3935613-images-thumbs&n=13" class="portfolio-img" alt="Лендинг" onerror="this.src='https://via.placeholder.com/600x400/0a2e1a/ffffff?text=Лендинг+страница'">
+                    <div class="portfolio-overlay">
+                        <h4>Лендинг</h4>
+                        <p>Высококонверсионная страница для стартапа</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">HTML</span>
+                            <span class="badge bg-success me-1">CSS</span>
+                            <span class="badge bg-success">GSAP</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 5 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=92f094c2ba925b4d3ba0854775c9426208bb0a99-11539738-images-thumbs&n=13" class="portfolio-img" alt="Админ панель" onerror="this.src='https://via.placeholder.com/600x400/1a4d2e/ffffff?text=Админ+панель'">
+                    <div class="portfolio-overlay">
+                        <h4>Админ панель</h4>
+                        <p>Панель управления для системы аналитики</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">React</span>
+                            <span class="badge bg-success me-1">Chart.js</span>
+                            <span class="badge bg-success">API</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 6 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=af356d1d888c48a58781901bf7e9e93d661cb34a-5213474-images-thumbs&n=13" class="portfolio-img" alt="UI Kit" onerror="this.src='https://via.placeholder.com/600x400/2d7d46/ffffff?text=UI+Kit'">
+                    <div class="portfolio-overlay">
+                        <h4>UI Kit</h4>
+                        <p>Дизайн система для веб-приложения</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">Figma</span>
+                            <span class="badge bg-success me-1">Adobe XD</span>
+                            <span class="badge bg-success">UI/UX</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Скрытые проекты -->
+        <div class="row d-none" id="more-portfolio">
+            <!-- Проект 7 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=835a4131c772c13ee4f67d791b7c82325ba0b5fe-4353469-images-thumbs&n=13" class="portfolio-img" alt="Блог" onerror="this.src='https://via.placeholder.com/600x400/3aab58/ffffff?text=Блог'">
+                    <div class="portfolio-overlay">
+                        <h4>Блог</h4>
+                        <p>Платформа для ведения блога с комментариями</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">WordPress</span>
+                            <span class="badge bg-success me-1">PHP</span>
+                            <span class="badge bg-success">MySQL</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 8 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=69f37a1736e64afb63cfbbfd6f72e99f3ac31fea-8243435-images-thumbs&n=13" class="portfolio-img" alt="Портфолио" onerror="this.src='https://via.placeholder.com/600x400/0a2e1a/ffffff?text=Портфолио'">
+                    <div class="portfolio-overlay">
+                        <h4>Портфолио</h4>
+                        <p>Сайт-портфолио для фотографа</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">JavaScript</span>
+                            <span class="badge bg-success me-1">Lightbox</span>
+                            <span class="badge bg-success">CSS Grid</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 9 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=95841debcf8c47eedf7850468a3dc134c011e522-12481490-images-thumbs&n=13" class="portfolio-img" alt="Ресторан" onerror="this.src='https://via.placeholder.com/600x400/1a4d2e/ffffff?text=Ресторан'">
+                    <div class="portfolio-overlay">
+                        <h4>Ресторан</h4>
+                        <p>Сайт ресторана с меню и бронированием</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">Bootstrap</span>
+                            <span class="badge bg-success me-1">jQuery</span>
+                            <span class="badge bg-success">PHP</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 10 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=84b0d95c2d7be094062154a805d512fafd8a0b9d-5222449-images-thumbs&n=13" class="portfolio-img" alt="Погода" onerror="this.src='https://via.placeholder.com/600x400/2d7d46/ffffff?text=Погода'">
+                    <div class="portfolio-overlay">
+                        <h4>Погода</h4>
+                        <p>Приложение для прогноза погоды</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">React</span>
+                            <span class="badge bg-success me-1">API</span>
+                            <span class="badge bg-success">Geolocation</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 11 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=d8247d749e884216c6680b05097d8ca84532031e-5231808-images-thumbs&n=13" class="portfolio-img" alt="Игра" onerror="this.src='https://via.placeholder.com/600x400/3aab58/ffffff?text=Игра'">
+                    <div class="portfolio-overlay">
+                        <h4>Игра</h4>
+                        <p>Браузерная 2D игра на JavaScript</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">Canvas</span>
+                            <span class="badge bg-success me-1">JavaScript</span>
+                            <span class="badge bg-success">Game Design</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 12 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=3370bbf923c30eea1e847e1849f7c6d29c5fa1854c23b3bc-4613271-images-thumbs&n=13" class="portfolio-img" alt="Чат" onerror="this.src='https://via.placeholder.com/600x400/0a2e1a/ffffff?text=Чат'">
+                    <div class="portfolio-overlay">
+                        <h4>Чат</h4>
+                        <p>Реалтайм чат-приложение</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">Socket.io</span>
+                            <span class="badge bg-success me-1">Node.js</span>
+                            <span class="badge bg-success">MongoDB</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 13 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=2005ef8367cc8f79e09b0f9b170842f9db973b51-4914317-images-thumbs&n=13" class="portfolio-img" alt="Образование" onerror="this.src='https://via.placeholder.com/600x400/1a4d2e/ffffff?text=Образование'">
+                    <div class="portfolio-overlay">
+                        <h4>Образование</h4>
+                        <p>Платформа для онлайн-курсов</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">Laravel</span>
+                            <span class="badge bg-success me-1">Vue.js</span>
+                            <span class="badge bg-success">MySQL</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 14 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=19b2dddebe3383a70f38cb3ee00eb14765425dd5-12371687-images-thumbs&n=13" class="portfolio-img" alt="Карта" onerror="this.src='https://via.placeholder.com/600x400/2d7d46/ffffff?text=Карта'">
+                    <div class="portfolio-overlay">
+                        <h4>Карта</h4>
+                        <p>Интерактивная карта мероприятий</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">Leaflet.js</span>
+                            <span class="badge bg-success me-1">React</span>
+                            <span class="badge bg-success">API</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 15 -->
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=9ae2d9ffc57f626976a54b6f86217a8f_sr-4446967-images-thumbs&n=13" class="portfolio-img" alt="Музыка" onerror="this.src='https://via.placeholder.com/600x400/3aab58/ffffff?text=Музыка'">
+                    <div class="portfolio-overlay">
+                        <h4>Музыка</h4>
+                        <p>Музыкальный плеер с плейлистами</p>
+                        <div class="mt-2">
+                            <span class="badge bg-success me-1">HTML5 Audio</span>
+                            <span class="badge bg-success me-1">JavaScript</span>
+                            <span class="badge bg-success">UI Design</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-light mt-3">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4 slide-up">
+            <button id="show-more-btn" class="btn btn-primary btn-lg">
+                <i class="fas fa-eye me-2"></i>Показать ещё работы
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Показать/скрыть дополнительные проекты
+    document.getElementById('show-more-btn').addEventListener('click', function() {
+        const morePortfolio = document.getElementById('more-portfolio');
+        const btn = this;
+        
+        if (morePortfolio.classList.contains('d-none')) {
+            morePortfolio.classList.remove('d-none');
+            morePortfolio.classList.add('animate__animated', 'animate__fadeIn');
+            btn.innerHTML = '<i class="fas fa-eye-slash me-2"></i>Скрыть работы';
+        } else {
+            morePortfolio.classList.add('d-none');
+            btn.innerHTML = '<i class="fas fa-eye me-2"></i>Показать ещё работы';
+        }
+    });
+</script>
+
+    <!-- Контакты -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title text-center slide-up"><i class="fas fa-envelope me-2"></i>Свяжитесь со мной</h2>
+            <p class="text-center mb-5 slide-up">Готовы начать проект? Напишите мне, и я свяжусь с вами в ближайшее время.</p>
+            
+            <div class="row slide-up">
+                <div class="col-md-4 mb-4">
+                    <div class="contact-card text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>Телефон</h4>
+                        <p>+375 29 864-48-31</p>
+                        <a href="tel:+71234567890" class="btn btn-sm btn-outline-success">Позвонить</a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="contact-card text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email</h4>
+                        <p>kristinandref@gmail.com</p>
+                        <a href="mailto:kristinandref@gmail.com" class="btn btn-sm btn-outline-success">Написать</a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="contact-card text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Адрес</h4>
+                        <p>г. Минск, ул.Уручская, 21</p>
+                        <a href="#" class="btn btn-sm btn-outline-success">На карте</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center mt-5 slide-up">
+                <div class="col-lg-8">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" class="form-control" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Тема">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Сообщение" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane me-2"></i>Отправить сообщение</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <h3 class="mb-3">Кристина Боровик</h3>
+                    <p class="mb-0">Веб-разработчик и дизайнер</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="footer-links mb-3">
+                        <a href="#about" class="mx-3">Обо мне</a>
+                        <a href="#skills" class="mx-3">Навыки</a>
+                        <a href="#portfolio" class="mx-3">Портфолио</a>
+                        <a href="#contact" class="mx-3">Контакты</a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="mx-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="mx-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="mx-2"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="mx-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="mx-2"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-success opacity-25">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2023 Кристина Боровик. Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка "Наверх" -->
+    <a href="#" class="back-to-top animate__animated animate__fadeInUp" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Ваш JS -->
+    <script>
+        // Плавная прокрутка для всех ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Изменение навигации при скролле
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const backToTop = document.getElementById('backToTop');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                backToTop.style.display = 'block';
+            } else {
+                navbar.classList.remove('scrolled');
+                backToTop.style.display = 'none';
+            }
+        });
+        
+        // Анимация элементов при скролле
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Инициализация анимаций при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroTitle = document.querySelector('.hero-content h1');
+            const heroSubtitle = document.querySelector('.hero-content h2');
+            const heroText = document.querySelector('.hero-content p');
+            const heroButtons = document.querySelector('.hero-content .d-flex');
+            
+            heroTitle.classList.add('animate__animated', 'animate__fadeInDown');
+            heroSubtitle.classList.add('animate__animated', 'animate__fadeInDown', 'animate__delay-1s');
+            heroText.classList.add('animate__animated', 'animate__fadeIn', 'animate__delay-2s');
+            heroButtons.classList.add('animate__animated', 'animate__fadeIn', 'animate__delay-3s');
+        });
+    </script>
+</body>
+</html>
